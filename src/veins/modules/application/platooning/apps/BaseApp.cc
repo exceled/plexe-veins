@@ -123,7 +123,9 @@ void BaseApp::handleLowerMsg(cMessage *msg) {
 			vehicleData.speed = epkt->getSpeed();
 			vehicleData.time = epkt->getTime();
 			//send information to CACC
-			traciVehicle->setGenericInformation(CC_SET_VEHICLE_DATA, &vehicleData, sizeof(struct Plexe::VEHICLE_DATA));
+			if (simTime() < 5.0) {
+			    traciVehicle->setGenericInformation(CC_SET_VEHICLE_DATA, &vehicleData, sizeof(struct Plexe::VEHICLE_DATA));
+			}
 
 		}
 
